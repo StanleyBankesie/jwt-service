@@ -1,30 +1,23 @@
-// jwt-service.js
-// Install: npm install express jsonwebtoken cors
+// Your JWT service code (the code you provided)
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
-
 const app = express();
 app.use(express.json());
 app.use(cors());
-
 const PORT = process.env.PORT || 3000;
 
-// Endpoint to generate JWT and get access token
 app.post("/generate-token", async (req, res) => {
   try {
     const { client_email, private_key, token_uri } = req.body;
-
     if (!client_email || !private_key || !token_uri) {
       return res.status(400).json({
         error: "Missing required fields: client_email, private_key, token_uri",
       });
     }
 
-    // Generate JWT
     const now = Math.floor(Date.now() / 1000);
-    const expires = now + 3600; // 1 hour
-
+    const expires = now + 3600;
     const jwtToken = jwt.sign(
       {
         iss: client_email,
@@ -37,7 +30,6 @@ app.post("/generate-token", async (req, res) => {
       { algorithm: "RS256" }
     );
 
-    // Exchange JWT for OAuth2 access token
     const tokenResponse = await fetch(token_uri, {
       method: "POST",
       headers: {
@@ -55,7 +47,6 @@ app.post("/generate-token", async (req, res) => {
     }
 
     const tokenData = await tokenResponse.json();
-
     res.json({
       access_token: tokenData.access_token,
       expires_in: tokenData.expires_in,
@@ -73,7 +64,6 @@ app.post("/generate-token", async (req, res) => {
   }
 });
 
-// Health check endpoint
 app.get("/health", (req, res) => {
   res.json({ status: "ok", service: "JWT Token Generator" });
 });
@@ -81,3 +71,7 @@ app.get("/health", (req, res) => {
 app.listen(PORT, () => {
   console.log(`JWT Token Service running on port ${PORT}`);
 });
+```
+
+### **.gitignore** (optional but recommended)
+```;
