@@ -2,16 +2,28 @@
   "name": "jwt-token-service",
   "version": "1.0.0",
   "description": "JWT Token Generator Service",
-  "main": "server.js",
+  "main": "jwt-service.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node jwt-service.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "cors": "^2.8.5"
+    "node-fetch": "^3.3.2"
   },
   "engines": {
     "node": ">=16.x"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StanleyBankesie/jwt-service.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StanleyBankesie/jwt-service/issues"
+  },
+  "homepage": "https://github.com/StanleyBankesie/jwt-service#readme"
 }
